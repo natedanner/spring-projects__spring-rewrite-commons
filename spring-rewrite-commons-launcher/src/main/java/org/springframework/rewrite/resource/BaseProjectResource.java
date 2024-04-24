@@ -17,9 +17,9 @@ package org.springframework.rewrite.resource;
 
 public abstract class BaseProjectResource implements InternalProjectResource {
 
-	protected boolean isChanged = false;
+	protected boolean isChanged;
 
-	private boolean isDeleted = false;
+	private boolean isDeleted;
 
 	public boolean hasChanges() {
 		return isChanged;

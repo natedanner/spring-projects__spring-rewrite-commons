@@ -40,7 +40,7 @@ public class RewriteMavenPlugin
 
 	private String maxMemory;
 
-	private MavenInvocationRequestFactory factory = new MavenInvocationRequestFactory();
+	private final MavenInvocationRequestFactory factory = new MavenInvocationRequestFactory();
 
 	private List<String> dependencies = new ArrayList<>();
 

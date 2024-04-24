@@ -147,11 +147,10 @@ public class RewriteRecipeDiscovery {
 		Environment environment = Environment.builder().load(resourceLoader).build();
 
 		Collection<RecipeDescriptor> recipeDescriptors = environment.listRecipeDescriptors();
-		RecipeDescriptor descriptor = recipeDescriptors.stream()
+		return recipeDescriptors.stream()
 			.filter(rd -> "AnotherDummyRecipe".equals(rd.getDisplayName()))
 			.findFirst()
 			.get();
-		return descriptor;
 	}
 
 	public List<Recipe> findRecipesByTag(String tag) {
@@ -193,8 +192,7 @@ public class RewriteRecipeDiscovery {
 	public static List<Recipe> getFilteredRecipes(Predicate<Recipe> filterPredicate) {
 		ResourceLoader resourceLoader = new ClasspathScanningLoader(new Properties(), new String[] {});
 		Environment environment = Environment.builder().load(resourceLoader).build();
-		List<Recipe> recipes = environment.listRecipes().stream().filter(filterPredicate).toList();
-		return recipes;
+		return environment.listRecipes().stream().filter(filterPredicate).toList();
 	}
 
 	// class AbstractRewriteMojoHelper extends AbstractRewriteMojo {

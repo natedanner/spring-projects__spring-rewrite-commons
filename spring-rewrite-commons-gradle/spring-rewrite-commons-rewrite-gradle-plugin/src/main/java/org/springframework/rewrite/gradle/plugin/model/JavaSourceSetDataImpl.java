@@ -87,10 +87,12 @@ final class JavaSourceSetDataImpl implements JavaSourceSetData, Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 		JavaSourceSetDataImpl that = (JavaSourceSetDataImpl) o;
 		return Objects.equals(name, that.name) && Objects.equals(sources, that.sources)
 				&& Objects.equals(sourceDirectories, that.sourceDirectories) && Objects.equals(java, that.java)

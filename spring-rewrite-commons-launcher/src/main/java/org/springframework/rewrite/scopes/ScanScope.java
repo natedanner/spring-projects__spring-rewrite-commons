@@ -23,6 +23,6 @@ package org.springframework.rewrite.scopes;
  */
 public class ScanScope extends AbstractBaseScope {
 
-	public final static String SCOPE_NAME = "scanScope";
+	public static final String SCOPE_NAME = "scanScope";
 
 }

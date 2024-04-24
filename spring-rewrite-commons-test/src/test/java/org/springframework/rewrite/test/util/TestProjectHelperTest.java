@@ -111,7 +111,7 @@ class TestProjectHelperTest {
 			TestProjectHelper.createTestProject(baseDir).cloneGitProject(url).writeToFilesystem();
 			assertThat(baseDir.resolve(".git")).exists();
 			Repository repository = Git.open(baseDir.toFile()).getRepository();
-			assertThat(repository.getBranch().toString()).isEqualTo("main");
+			assertThat(repository.getBranch()).isEqualTo("main");
 			assertThat(repository.getRemoteNames()).containsExactly("origin");
 		}
 
@@ -126,7 +126,7 @@ class TestProjectHelperTest {
 				.writeToFilesystem();
 			assertThat(baseDir.resolve(".git")).exists();
 			Repository repository = Git.open(baseDir.toFile()).getRepository();
-			assertThat(repository.getBranch().toString()).isEqualTo("f8681fa5e4eb35665107d0adac95f79b1b92df47");
+			assertThat(repository.getBranch()).isEqualTo("f8681fa5e4eb35665107d0adac95f79b1b92df47");
 		}
 
 		@Test
@@ -140,7 +140,7 @@ class TestProjectHelperTest {
 				.writeToFilesystem();
 			assertThat(baseDir.resolve(".git")).exists();
 			Repository repository = Git.open(baseDir.toFile()).getRepository();
-			assertThat(repository.getBranch().toString()).isEqualTo("f8681fa5e4eb35665107d0adac95f79b1b92df47");
+			assertThat(repository.getBranch()).isEqualTo("f8681fa5e4eb35665107d0adac95f79b1b92df47");
 		}
 
 	}

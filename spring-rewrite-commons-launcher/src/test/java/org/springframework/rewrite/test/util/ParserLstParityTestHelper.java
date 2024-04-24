@@ -48,7 +48,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Fabian Krüger
  */
-public class ParserLstParityTestHelper {
+public final class ParserLstParityTestHelper {
 
 	private final Path baseDir;
 
@@ -63,8 +63,7 @@ public class ParserLstParityTestHelper {
 	}
 
 	public static ParserLstParityTestHelper scanProjectDir(Path baseDir) {
-		ParserLstParityTestHelper helper = new ParserLstParityTestHelper(baseDir);
-		return helper;
+		return new ParserLstParityTestHelper(baseDir);
 	}
 
 	/**
@@ -411,13 +410,7 @@ public class ParserLstParityTestHelper {
 						URI f2 = new File((String) expected).toURI();
 						// @formatter:off
                         return
-                                f1.getScheme() != null && f2.getScheme() != null ? f1.getScheme().equals(f2.getScheme()) : f1.getScheme() == null && f2.getScheme() == null ? true : false
-                                        &&
-                                        f1.getHost() != null && f2.getHost() != null ? f1.getHost().equals(f2.getHost()) : f1.getHost() == null && f2.getHost() == null ? true : false
-                                        &&
-                                        f1.getPath() != null && f2.getPath() != null ? f1.getPath().equals(f2.getPath()) : f1.getPath() == null && f2.getPath() == null ? true : false
-                                        &&
-                                        f1.getFragment() != null && f2.getFragment() != null ? f1.getFragment().equals(f2.getFragment()) : f1.getFragment() == null && f2.getFragment() == null ? true : false;
+                                f1.getScheme() != null && f2.getScheme() != null ? f1.getScheme().equals(f2.getScheme()) : f1.getScheme() == null && f2.getScheme() == null ? true : false ? f1.getHost().equals(f2.getHost()) : f1.getHost() == null && f2.getHost() == null ? true : false ? f1.getPath().equals(f2.getPath()) : f1.getPath() == null && f2.getPath() == null ? true : false ? f1.getFragment().equals(f2.getFragment()) : f1.getFragment() == null && f2.getFragment() == null ? true : false;
                         // @formatter:on
 					}
 					else {

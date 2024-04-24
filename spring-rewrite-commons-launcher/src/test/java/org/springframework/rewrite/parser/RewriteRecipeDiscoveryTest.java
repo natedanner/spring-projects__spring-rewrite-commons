@@ -244,9 +244,7 @@ class RewriteRecipeDiscoveryTest {
 
 	@NotNull
 	private static Optional<Recipe> getRecipeByDisplayName(List<Recipe> recipes, String recipeDisplayName) {
-		return recipes.stream().filter(r -> {
-			return r.getDisplayName().equals(recipeDisplayName);
-		}).findFirst();
+		return recipes.stream().filter(r -> r.getDisplayName().equals(recipeDisplayName)).findFirst();
 	}
 
 	@NotNull

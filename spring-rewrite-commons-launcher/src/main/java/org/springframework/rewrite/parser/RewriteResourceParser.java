@@ -218,7 +218,7 @@ public class RewriteResourceParser {
 		});
 
 		Map<Path, Resource> pathToResource = filteredResources.stream()
-			.collect(Collectors.toMap(r -> ResourceUtil.getPath(r), r -> r));
+			.collect(Collectors.toMap(ResourceUtil::getPath, r -> r));
 
 		if (!javaPaths.isEmpty()) {
 			List<Parser.Input> inputs = getInputs(pathToResource, javaPaths);

@@ -222,8 +222,7 @@ public class IterativeBoot3UpgradeExample implements ApplicationRunner {
 	private String extractSpringBootVersion(String pomXml) {
 		try {
 			ObjectMapper mm = new XmlMapper();
-			String version = mm.readTree(pomXml).get("parent").get("version").textValue();
-			return version;
+			return mm.readTree(pomXml).get("parent").get("version").textValue();
 		}
 		catch (JsonProcessingException e) {
 			throw new RuntimeException(e);
@@ -251,12 +250,11 @@ public class IterativeBoot3UpgradeExample implements ApplicationRunner {
 	}
 
 	private static Ref createBranch(Git git, String branchName) throws GitAPIException {
-		Ref branchRef = git.branchCreate()
+		return git.branchCreate()
 			.setName(branchName)
 			.setUpstreamMode(CreateBranchCommand.SetupUpstreamMode.SET_UPSTREAM)
 			.setForce(true)
 			.call();
-		return branchRef;
 	}
 
 	private ProjectResourceSet parseProject(Path baseDir) {
@@ -265,8 +263,7 @@ public class IterativeBoot3UpgradeExample implements ApplicationRunner {
 		// parse
 		RewriteProjectParsingResult parsingResult = parser.parse(baseDir, resources);
 		List<SourceFile> sourceFiles = parsingResult.sourceFiles();
-		ProjectResourceSet projectResourceSet = projectResourceSetFactory.create(baseDir, sourceFiles);
-		return projectResourceSet;
+		return projectResourceSetFactory.create(baseDir, sourceFiles);
 	}
 
 	@NotNull
@@ -286,8 +283,7 @@ public class IterativeBoot3UpgradeExample implements ApplicationRunner {
 		if (args.getNonOptionArgs().isEmpty()) {
 			throw new IllegalArgumentException("A repository URL must be provided.");
 		}
-		String repoUrl = args.getNonOptionArgs().get(0);
-		return repoUrl;
+		return args.getNonOptionArgs().get(0);
 	}
 
 	private void cloneFreshRepo(String repoUrl, Path targetDir, String gitHash) {
@@ -325,8 +321,9 @@ public class IterativeBoot3UpgradeExample implements ApplicationRunner {
 		// FIXME: If recipes is a list they need to be provided through
 		// Recipe.getRecipeList() to not require a new parse
 		log.info("Applying recipes %s".formatted(recipes.stream().map(Recipe::getDisplayName).toList()));
-		if (recipes.size() > 1)
+		if (recipes.size() > 1) {
 			throw new UnsupportedOperationException("Can only handle single recipes.");
+		}
 		recipes.forEach(r -> this.applyRecipe(projectResourceSet, r));
 	}
 
@@ -338,8 +335,7 @@ public class IterativeBoot3UpgradeExample implements ApplicationRunner {
 
 	private List<Recipe> discoverRecipes(List<String> recipeNames) {
 		List<Recipe> recipes = discovery.discoverRecipes();
-		List<Recipe> matchingRecipes = recipes.stream().filter(r -> recipeNames.contains(r.getName())).toList();
-		return matchingRecipes;
+		return recipes.stream().filter(r -> recipeNames.contains(r.getName())).toList();
 	}
 
 }

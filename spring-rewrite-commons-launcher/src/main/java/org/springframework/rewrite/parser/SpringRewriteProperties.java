@@ -34,14 +34,14 @@ public class SpringRewriteProperties {
 	/**
 	 * Whether to skip parsing maven pom files
 	 */
-	private boolean skipMavenParsing = false;
+	private boolean skipMavenParsing;
 
 	/**
 	 * Enable/Disable the MavenPomCache. With {@code false} OpenRewrite's
 	 * InMemoryMavenPomCache will be used. With {@code true} a composite cache of
 	 * RocksdbMavenPomCache and InMemoryMavenPomCache will be used on 64-Bit system.
 	 */
-	private boolean pomCacheEnabled = false;
+	private boolean pomCacheEnabled;
 
 	/**
 	 * Defines the cache dir for RocksdbMavenPomCache when {@code parser.pomCacheEnabled}
@@ -68,7 +68,7 @@ public class SpringRewriteProperties {
 	/**
 	 * Whether only the current Maven module will be parsed
 	 */
-	private boolean runPerSubmodule = false;
+	private boolean runPerSubmodule;
 
 	/**
 	 * Comma-separated list of active Maven profiles
@@ -96,7 +96,7 @@ public class SpringRewriteProperties {
 	/**
 	 * Whether {@link JavaParser} should log compilation warnings and errors.
 	 */
-	private boolean logCompilationWarningsAndErrors = false;
+	private boolean logCompilationWarningsAndErrors;
 
 	public boolean isSkipMavenParsing() {
 		return skipMavenParsing;

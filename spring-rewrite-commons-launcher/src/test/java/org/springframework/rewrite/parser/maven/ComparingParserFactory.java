@@ -42,13 +42,12 @@ public class ComparingParserFactory {
 		ApplicationEventPublisher eventPublisher = mock(ApplicationEventPublisher.class);
 		RewriteParsingEventListenerAdapter parsingListener = new RewriteParsingEventListenerAdapter(eventPublisher);
 		MavenExecutionRequestFactory requestFactory = new MavenExecutionRequestFactory(new MavenConfigFileParser());
-		RewriteMavenProjectParser mavenProjectParser1 = new RewriteMavenProjectParser(plexusContainer, parsingListener,
+		return new RewriteMavenProjectParser(plexusContainer, parsingListener,
 				new MavenExecutor(requestFactory, plexusContainer),
 				new MavenMojoProjectParserFactory(springRewriteProperties), scanScope, beanFactory,
 				new InMemoryExecutionContext(t -> {
 					throw new RuntimeException(t);
 				}));
-		return mavenProjectParser1;
 	}
 
 }

@@ -234,10 +234,12 @@ public class GradleToolingApiProjectBuilder {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 			GroupArtifactVersionImpl that = (GroupArtifactVersionImpl) o;
 			return Objects.equals(groupId, that.groupId) && Objects.equals(artifactId, that.artifactId)
 					&& Objects.equals(version, that.version);
@@ -271,10 +273,12 @@ public class GradleToolingApiProjectBuilder {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 			GroupArtifactImpl that = (GroupArtifactImpl) o;
 			return Objects.equals(groupId, that.groupId) && Objects.equals(artifactId, that.artifactId);
 		}
@@ -340,10 +344,12 @@ public class GradleToolingApiProjectBuilder {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 			DependencyImpl that = (DependencyImpl) o;
 			return Objects.equals(gav, that.gav) && Objects.equals(classifier, that.classifier)
 					&& Objects.equals(type, that.type) && Objects.equals(scope, that.scope)
@@ -453,10 +459,12 @@ public class GradleToolingApiProjectBuilder {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 			ResolvedGroupArtifactVersionImpl that = (ResolvedGroupArtifactVersionImpl) o;
 			return Objects.equals(artifactId, that.artifactId) && Objects.equals(groupId, that.groupId)
 					&& Objects.equals(version, that.version)
@@ -517,10 +525,12 @@ public class GradleToolingApiProjectBuilder {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 			ResolvedDependencyImpl that = (ResolvedDependencyImpl) o;
 			return depth == that.depth && Objects.equals(repository, that.repository) && Objects.equals(gav, that.gav)
 					&& Objects.equals(requested, that.requested) && Objects.equals(dependencies, that.dependencies);

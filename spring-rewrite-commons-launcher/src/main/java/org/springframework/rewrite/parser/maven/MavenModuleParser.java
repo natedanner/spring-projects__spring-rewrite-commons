@@ -122,9 +122,8 @@ public class MavenModuleParser {
 		sourceFiles.addAll(mainAndTestSources);
 		sourceFiles.addAll(resourceFilesList);
 
-		ModuleParsingResult moduleParsingResult = new ModuleParsingResult(currentProject, mainSourcesParsingResult,
+		return new ModuleParsingResult(currentProject, mainSourcesParsingResult,
 				testSourcesParsingResult, resourceFilesList);
-		return moduleParsingResult;
 	}
 
 	/**
@@ -151,7 +150,7 @@ public class MavenModuleParser {
 		List<SourceFile> sourceFilesFromOtherModules = currentProject.getDependencyProjects()
 			.stream()
 			// get their parsing result
-			.map(project -> parsingResultsMap.get(project))
+			.map(parsingResultsMap::get)
 			.flatMap(result -> result.mainSourcesParsingResult().sourceFiles().stream())
 			.toList();
 
@@ -202,11 +201,9 @@ public class MavenModuleParser {
 		List<SourceFile> sourceFilesFromOtherModules = currentProject.getDependencyProjects()
 			.stream()
 			// get their parsing result
-			.map(project -> parsingResultsMap.get(project))
-			.flatMap(result -> {
-				return Stream.concat(result.mainSourcesParsingResult().sourceFiles().stream(),
-						result.testSourcesParsingResult().sourceFiles().stream());
-			})
+			.map(parsingResultsMap::get)
+			.flatMap(result -> Stream.concat(result.mainSourcesParsingResult().sourceFiles().stream(),
+						result.testSourcesParsingResult().sourceFiles().stream()))
 			.toList();
 
 		List<SourceFile> sourceFilesFromMain = mainSourcesParsingResult.sourceFiles();
@@ -249,8 +246,7 @@ public class MavenModuleParser {
 			Path path = ResourceUtil.getPath(r);
 			boolean isSynthetic = Files.exists(path);
 			Supplier<InputStream> inputStreamSupplier = () -> ResourceUtil.getInputStream(r);
-			Parser.Input input = new Parser.Input(path, fileAttributes, inputStreamSupplier, isSynthetic);
-			return input;
+			return new Parser.Input(path, fileAttributes, inputStreamSupplier, isSynthetic);
 		}).toList();
 
 		// collecting parsed compilation units to the classpath (localClassesCp).

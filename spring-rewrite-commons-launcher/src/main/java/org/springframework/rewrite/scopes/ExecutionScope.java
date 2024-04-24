@@ -23,6 +23,6 @@ package org.springframework.rewrite.scopes;
  */
 public class ExecutionScope extends AbstractBaseScope {
 
-	public final static String SCOPE_NAME = "executionScope";
+	public static final String SCOPE_NAME = "executionScope";
 
 }

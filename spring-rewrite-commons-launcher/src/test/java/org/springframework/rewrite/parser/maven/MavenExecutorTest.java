@@ -36,9 +36,8 @@ class MavenExecutorTest {
 		MavenExecutor sut = new MavenExecutor(requestFactory, containerFactory);
 		Path baseDir = Path.of("./testcode/maven-projects/maven-config");
 		List<String> goals = List.of("clean", "install");
-		sut.onProjectSucceededEvent(baseDir, goals, event -> {
-			assertThat(event.getSession()).isNotNull();
-		});
+		sut.onProjectSucceededEvent(baseDir, goals, event ->
+			assertThat(event.getSession()).isNotNull());
 	}
 
 }

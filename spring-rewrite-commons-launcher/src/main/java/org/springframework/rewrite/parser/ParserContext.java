@@ -67,7 +67,7 @@ public class ParserContext {
 	}
 
 	public List<Resource> getBuildFileResources() {
-		return sortedProjects.stream().map(p -> p.getPomFile()).toList();
+		return sortedProjects.stream().map(MavenProject::getPomFile).toList();
 	}
 
 	public Xml.Document getXmlDocument(Path path) {

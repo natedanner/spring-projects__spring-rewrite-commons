@@ -56,10 +56,12 @@ final class JavaVersionDataImpl implements JavaVersionData, Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 		JavaVersionDataImpl that = (JavaVersionDataImpl) o;
 		return Objects.equals(createdBy, that.createdBy) && Objects.equals(vmVendor, that.vmVendor)
 				&& Objects.equals(sourceCompatibility, that.sourceCompatibility)

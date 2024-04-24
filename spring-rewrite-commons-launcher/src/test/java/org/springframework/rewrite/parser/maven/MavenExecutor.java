@@ -75,7 +75,7 @@ class MavenExecutor {
 					.getFile()
 					.toPath()
 					.toString()
-					.equals(lastProject.getFile().getPath().toString())) {
+					.equals(lastProject.getFile().getPath())) {
 					eventConsumer.accept(event);
 				}
 			}

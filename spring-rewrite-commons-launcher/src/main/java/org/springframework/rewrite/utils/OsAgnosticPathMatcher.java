@@ -32,9 +32,9 @@ import java.util.Map;
  */
 public class OsAgnosticPathMatcher implements PathMatcher {
 
-	private PathMatcher pathMatcher = new AntPathMatcher();
+	private final PathMatcher pathMatcher = new AntPathMatcher();
 
-	private LinuxWindowsPathUnifier pathUnifier = new LinuxWindowsPathUnifier();
+	private final LinuxWindowsPathUnifier pathUnifier = new LinuxWindowsPathUnifier();
 
 	@Override
 	public boolean isPattern(String s) {

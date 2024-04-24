@@ -61,10 +61,12 @@ public class GradleToolingApiSettingsBuilder {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 			FeaturePreviewImpl that = (FeaturePreviewImpl) o;
 			return active == that.active && enabled == that.enabled && Objects.equals(name, that.name);
 		}
@@ -110,10 +112,12 @@ public class GradleToolingApiSettingsBuilder {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 			GradleSettingsImpl that = (GradleSettingsImpl) o;
 			return Objects.equals(pluginRepositories, that.pluginRepositories) && Objects.equals(plugins, that.plugins)
 					&& Objects.equals(featurePreviews, that.featurePreviews);

@@ -49,7 +49,7 @@ public class StyleDetector {
 	}
 
 	private UnaryOperator<SourceFile> applyAutodetectedStyle(Map<Class<? extends Tree>, NamedStyles> stylesByType) {
-		return (before) -> {
+		return before -> {
 			Iterator var2 = stylesByType.entrySet().iterator();
 
 			while (var2.hasNext()) {

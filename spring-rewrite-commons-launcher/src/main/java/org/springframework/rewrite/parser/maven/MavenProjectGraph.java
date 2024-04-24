@@ -79,9 +79,8 @@ public class MavenProjectGraph {
 
 	private void initGaToMavenProjectMap(List<MavenProject> allPomFiles) {
 		gaToMavenProjectMap = new HashMap<>();
-		allPomFiles.stream().forEach(mp -> {
-			gaToMavenProjectMap.putIfAbsent(new ProjectId(mp.getGroupId(), mp.getArtifactId()), mp);
-		});
+		allPomFiles.stream().forEach(mp ->
+			gaToMavenProjectMap.putIfAbsent(new ProjectId(mp.getGroupId(), mp.getArtifactId()), mp));
 	}
 
 	private void buildDependencyGraph(MavenProject currentProject, List<MavenProject> reactorProjects,
@@ -94,11 +93,10 @@ public class MavenProjectGraph {
 		if (isMultiModuleProject(currentProject)) {
 			currentProject.getBuildFile().getModules().stream().map(moduleName -> {
 				Path modulePath = currentProject.getModulePath().resolve(moduleName).normalize();
-				MavenProject mavenProject = reactorProjects.stream()
+				return reactorProjects.stream()
 					.filter(p -> LinuxWindowsPathUnifier.pathEquals(p.getModulePath(), modulePath))
 					.findFirst()
 					.get();
-				return mavenProject;
 			}).forEach(childProject -> {
 				// add dependent project
 				logDependentProject(childProject, dag, currentProject);

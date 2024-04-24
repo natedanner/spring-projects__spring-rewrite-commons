@@ -92,12 +92,10 @@ public class MavenBuildFileParser {
 
 		mavenParserBuilder.activeProfiles(activeProfiles.toArray(new String[] {}));
 
-		List<Xml.Document> parsedPoms = parsePoms(baseDir, buildFiles, mavenParserBuilder, executionContext)
+		return parsePoms(baseDir, buildFiles, mavenParserBuilder, executionContext)
 			.map(pp -> this.markPomFile(pp,
 					provenanceMarkers.getOrDefault(baseDir.resolve(pp.getSourcePath()), emptyList())))
 			.toList();
-
-		return parsedPoms;
 	}
 
 	private List<Resource> findResourcesWithoutProvenanceMarker(Path baseDir, List<Resource> buildFileResources,
@@ -128,7 +126,7 @@ public class MavenBuildFileParser {
 	private Map<Path, Xml.Document> createResult(Path basePath, List<Resource> pomFiles, List<SourceFile> parsedPoms) {
 		return parsedPoms.stream()
 			.map(pom -> mapResourceToDocument(basePath, pom, pomFiles))
-			.collect(Collectors.toMap(e -> ResourceUtil.getPath(e.getKey()), e -> e.getValue()));
+			.collect(Collectors.toMap(e -> ResourceUtil.getPath(e.getKey()), Map.Entry::getValue));
 	}
 
 	private Map.Entry<Resource, Xml.Document> mapResourceToDocument(Path basePath, SourceFile pom,
@@ -157,7 +155,7 @@ public class MavenBuildFileParser {
 	public List<Resource> filterAndSortBuildFiles(List<Resource> resources) {
 		return resources.stream()
 			.filter(r -> "pom.xml".equals(ResourceUtil.getPath(r).toFile().getName()))
-			.filter(r -> filterTestResources(r))
+			.filter(MavenBuildFileParser::filterTestResources)
 			.sorted((r1, r2) -> {
 
 				Path r1Path = ResourceUtil.getPath(r1);

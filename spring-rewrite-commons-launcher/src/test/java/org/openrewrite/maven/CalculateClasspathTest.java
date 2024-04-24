@@ -115,7 +115,7 @@ public class CalculateClasspathTest {
 
 		// Having Min annotation resolved proves type resolution is working for main
 		// resources
-		assertThat(mainCu.getTypesInUse().getTypesInUse().stream().map(t -> t.toString()))
+		assertThat(mainCu.getTypesInUse().getTypesInUse().stream().map(JavaType::toString))
 			.containsExactlyInAnyOrder("int", "String", "javax.validation.constraints.Min");
 
 		SourceFile testSourceFile = parsingResult.sourceFiles().get(2);
@@ -123,7 +123,7 @@ public class CalculateClasspathTest {
 		J.CompilationUnit testCu = (J.CompilationUnit) testSourceFile;
 		// Having Test annotation resolved proves type resolution is working for test
 		// resources
-		assertThat(testCu.getTypesInUse().getTypesInUse().stream().map(t -> t.toString()))
+		assertThat(testCu.getTypesInUse().getTypesInUse().stream().map(JavaType::toString))
 			.containsExactlyInAnyOrder("void", "org.junit.jupiter.api.Test");
 
 		// verify classpath

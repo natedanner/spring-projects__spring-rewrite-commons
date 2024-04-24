@@ -52,7 +52,7 @@ public class RewriteGradlePlugin implements OpenRewriteGradlePluginBuilder.Recip
 
 	private String maxMemory;
 
-	private boolean debug = false;
+	private boolean debug;
 
 	public static OpenRewriteGradlePluginBuilder.Recipes run() {
 		return executeGradleRewritePlugin(RUN);

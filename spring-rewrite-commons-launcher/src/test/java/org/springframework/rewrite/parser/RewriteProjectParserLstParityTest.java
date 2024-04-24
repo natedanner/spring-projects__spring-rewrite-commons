@@ -30,6 +30,7 @@ import org.openrewrite.InMemoryExecutionContext;
 import org.openrewrite.Parser;
 import org.openrewrite.SourceFile;
 import org.openrewrite.java.tree.J;
+import org.openrewrite.java.tree.JavaType;
 import org.openrewrite.shaded.jgit.api.errors.GitAPIException;
 import org.openrewrite.tree.ParsingEventListener;
 import org.openrewrite.tree.ParsingExecutionContextView;
@@ -85,16 +86,16 @@ class RewriteProjectParserParityTest {
 				assertThat(cu.getTypesInUse()
 					.getTypesInUse()
 					.stream()
-					.map(t -> t.toString())
-					.anyMatch(t -> t.equals("javax.validation.constraints.Min"))).isTrue();
+					.map(JavaType::toString)
+					.anyMatch("javax.validation.constraints.Min"::equals)).isTrue();
 
 				assertThat(testedParsingResult.sourceFiles().get(1)).isInstanceOf(J.CompilationUnit.class);
 				J.CompilationUnit cu2 = (J.CompilationUnit) testedParsingResult.sourceFiles().get(1);
 				assertThat(cu2.getTypesInUse()
 					.getTypesInUse()
 					.stream()
-					.map(t -> t.toString())
-					.anyMatch(t -> t.equals("javax.validation.constraints.Min"))).isTrue();
+					.map(JavaType::toString)
+					.anyMatch("javax.validation.constraints.Min"::equals)).isTrue();
 			});
 	}
 

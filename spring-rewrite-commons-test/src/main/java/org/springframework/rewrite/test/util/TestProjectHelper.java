@@ -44,7 +44,7 @@ public class TestProjectHelper {
 
 	private final Path targetDir;
 
-	private List<Resource> resources = new ArrayList<>();
+	private final List<Resource> resources = new ArrayList<>();
 
 	private boolean initializeGitRepo;
 
@@ -52,9 +52,9 @@ public class TestProjectHelper {
 
 	private String gitTag;
 
-	private boolean deleteDirIfExists = false;
+	private boolean deleteDirIfExists;
 
-	private String gitHash = null;
+	private String gitHash;
 
 	public TestProjectHelper(Path targetDir) {
 		this.targetDir = targetDir;

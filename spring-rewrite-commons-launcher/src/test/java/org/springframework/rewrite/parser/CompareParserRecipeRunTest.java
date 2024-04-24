@@ -85,7 +85,7 @@ public class CompareParserRecipeRunTest {
 					public J.ClassDeclaration visitClassDeclaration(J.ClassDeclaration classDecl,
 							ExecutionContext executionContext) {
 						J.ClassDeclaration cd = super.visitClassDeclaration(classDecl, executionContext);
-						if (cd.getType().getFullyQualifiedName().equals("com.example.app.My")) {
+						if ("com.example.app.My".equals(cd.getType().getFullyQualifiedName())) {
 							Markers markers = cd.getMarkers();
 							markers = markers.addIfAbsent(new SearchResult(UUID.randomUUID(), "Another visit"));
 							// This triggers the result

@@ -53,7 +53,7 @@ public class MavenInvocationRequestFactory {
 		request.setBatchMode(true);
 		request.setMavenHome(new File(mavenHome));
 		request.setBaseDirectory(baseDir.toFile());
-		request.setOutputHandler(s -> lineConsumer.accept(s));
+		request.setOutputHandler(lineConsumer::accept);
 		if (debug) {
 			request.setDebug(true);
 		}

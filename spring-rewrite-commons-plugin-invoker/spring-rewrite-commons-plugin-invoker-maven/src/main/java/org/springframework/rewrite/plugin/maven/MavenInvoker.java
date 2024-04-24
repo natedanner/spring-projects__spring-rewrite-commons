@@ -49,9 +49,8 @@ public class MavenInvoker {
 	private static InvocationRequest createInvocationRequest(Path baseDir, DebugConfig debugConfig, boolean debug,
 			BuildConfig buildConfig, List<String> goals, StringBuilder sb) {
 		return new MavenInvocationRequestFactory().createMavenInvocationRequest(baseDir, debugConfig, debug,
-				buildConfig, goals, line -> {
-					sb.append(line).append("\n");
-				});
+				buildConfig, goals, line ->
+					sb.append(line).append("\n"));
 	}
 
 }

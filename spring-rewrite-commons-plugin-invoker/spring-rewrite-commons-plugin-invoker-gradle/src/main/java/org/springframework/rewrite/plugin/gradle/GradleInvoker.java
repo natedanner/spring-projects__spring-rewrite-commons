@@ -45,7 +45,6 @@ public class GradleInvoker {
 			buildLauncher.addArguments(args);
 			buildLauncher.setStandardError(es);
 			buildLauncher.run();
-			connection.close();
 			return new GradleInvocationResult(new String(os.toByteArray()), new String(es.toByteArray()));
 		}
 	}

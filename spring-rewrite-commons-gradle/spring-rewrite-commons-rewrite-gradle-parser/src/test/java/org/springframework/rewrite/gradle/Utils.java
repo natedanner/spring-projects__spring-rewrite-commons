@@ -29,41 +29,37 @@ public class Utils {
 	public static void unzip(URL url, Path destDir) throws IOException {
 		File dir = destDir.toFile();
 		// create output directory if it doesn't exist
-		if (!dir.exists())
+		if (!dir.exists()) {
 			dir.mkdirs();
+		}
 		InputStream is;
 		// buffer for read and write data to file
 		byte[] buffer = new byte[1024];
-		try {
-			is = url.openStream();
-			ZipInputStream zis = new ZipInputStream(is);
-			ZipEntry ze = zis.getNextEntry();
-			while (ze != null) {
-				if (!ze.isDirectory()) {
-					String fileName = ze.getName();
-					File newFile = new File(destDir + File.separator + fileName);
-					System.out.println("Unzipping to " + newFile.getAbsolutePath());
-					// create directories for sub directories in zip
-					new File(newFile.getParent()).mkdirs();
-					FileOutputStream fos = new FileOutputStream(newFile);
-					int len;
-					while ((len = zis.read(buffer)) > 0) {
-						fos.write(buffer, 0, len);
-					}
-					fos.close();
+		is = url.openStream();
+		ZipInputStream zis = new ZipInputStream(is);
+		ZipEntry ze = zis.getNextEntry();
+		while (ze != null) {
+			if (!ze.isDirectory()) {
+				String fileName = ze.getName();
+				File newFile = new File(destDir + File.separator + fileName);
+				System.out.println("Unzipping to " + newFile.getAbsolutePath());
+				// create directories for sub directories in zip
+				new File(newFile.getParent()).mkdirs();
+				FileOutputStream fos = new FileOutputStream(newFile);
+				int len;
+				while ((len = zis.read(buffer)) > 0) {
+					fos.write(buffer, 0, len);
 				}
-				// close this ZipEntry
-				zis.closeEntry();
-				ze = zis.getNextEntry();
+				fos.close();
 			}
-			// close last ZipEntry
+			// close this ZipEntry
 			zis.closeEntry();
-			zis.close();
-			is.close();
+			ze = zis.getNextEntry();
 		}
-		catch (IOException e) {
-			throw e;
-		}
+		// close last ZipEntry
+		zis.closeEntry();
+		zis.close();
+		is.close();
 	}
 
 }

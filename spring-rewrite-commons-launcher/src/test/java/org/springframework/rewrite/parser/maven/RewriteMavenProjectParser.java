@@ -93,8 +93,7 @@ public class RewriteMavenProjectParser {
 	public RewriteProjectParsingResult parse(Path baseDir, ExecutionContext executionContext) {
 		final Path absoluteBaseDir = getAbsolutePath(baseDir);
 		PlexusContainer plexusContainer = mavenPlexusContainer.get();
-		RewriteProjectParsingResult parsingResult = parseInternal(absoluteBaseDir, executionContext, plexusContainer);
-		return parsingResult;
+		return parseInternal(absoluteBaseDir, executionContext, plexusContainer);
 	}
 
 	private RewriteProjectParsingResult parseInternal(Path baseDir, ExecutionContext executionContext,

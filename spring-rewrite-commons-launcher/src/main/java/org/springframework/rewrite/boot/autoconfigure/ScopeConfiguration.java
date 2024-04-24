@@ -74,8 +74,7 @@ public class ScopeConfiguration {
 	@org.springframework.rewrite.scopes.annotations.ScanScope
 	ExecutionContext executionContext(ProjectMetadata projectMetadata,
 			Supplier<ExecutionContext> executionContextSupplier, MavenPomCache mavenPomCache) {
-		ExecutionContext executionContext = executionContextSupplier.get();
-		return executionContext;
+		return executionContextSupplier.get();
 	}
 
 }

@@ -25,8 +25,9 @@ public class JavaHelper {
 	}
 
 	public static String uppercaseFirstChar(String name) {
-		if (name.isEmpty())
+		if (name.isEmpty()) {
 			return name;
+		}
 		return Character.toUpperCase(name.charAt(0)) + name.substring(1);
 	}
 

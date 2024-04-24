@@ -134,8 +134,7 @@ public class RewriteRecipeLauncher {
 	private Optional<Recipe> discoverRecipe(String recipeName) {
 		// discover recipe
 		List<Recipe> recipes = discovery.discoverRecipes();
-		Optional<Recipe> recipe = recipes.stream().filter(r -> recipeName.equals(r.getName())).findFirst();
-		return recipe;
+		return recipes.stream().filter(r -> recipeName.equals(r.getName())).findFirst();
 	}
 
 	@NotNull

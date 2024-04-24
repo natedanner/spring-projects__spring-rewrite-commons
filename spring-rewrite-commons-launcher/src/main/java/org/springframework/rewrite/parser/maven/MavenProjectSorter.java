@@ -42,15 +42,14 @@ public class MavenProjectSorter {
 		List<MavenProject> buildOrder = new ArrayList<>();
 
 		Map<MavenProject, Set<MavenProject>> dependingProjects = new HashMap<>();
-		graph.keySet().forEach(mavenProject -> {
+		graph.keySet().forEach(mavenProject ->
 			graph.entrySet()
 				.stream()
 				.peek(e -> dependingProjects.computeIfAbsent(mavenProject, __ -> new HashSet<>()))
 				.filter(e -> e.getValue().contains(mavenProject))
 				.forEach(e -> {
 					dependingProjects.get(mavenProject).add(e.getKey());
-				});
-		});
+				}));
 
 		Map<MavenProject, Integer> inDegree = dependingProjects.keySet()
 			.stream()

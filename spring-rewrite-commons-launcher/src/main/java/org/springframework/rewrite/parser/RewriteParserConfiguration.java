@@ -75,7 +75,7 @@ public class RewriteParserConfiguration {
 
 	@Bean
 	Consumer<Throwable> artifactDownloaderErrorConsumer() {
-		return (t) -> {
+		return t -> {
 			throw new RuntimeException(t);
 		};
 	}

@@ -24,10 +24,12 @@ public record ProjectId(String groupId, String artifactId) {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 		ProjectId projectId = (ProjectId) o;
 		return Objects.equals(groupId, projectId.groupId) && Objects.equals(artifactId, projectId.artifactId);
 	}

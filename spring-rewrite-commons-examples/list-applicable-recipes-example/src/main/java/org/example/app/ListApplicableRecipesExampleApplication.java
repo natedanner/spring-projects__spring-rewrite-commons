@@ -70,20 +70,18 @@ public class ListApplicableRecipesExampleApplication implements ApplicationRunne
 		List<SourceFile> sourceFiles = parsingResult.sourceFiles();
 		matchingRecipes.forEach(recipe -> {
 			RecipeRun recipeRun = recipe.run(new InMemoryLargeSourceSet(sourceFiles), executionContext);
-			recipeRun.getChangeset().getAllResults().forEach(result -> {
+			recipeRun.getChangeset().getAllResults().forEach(result ->
 				result.getRecipeDescriptorsThatMadeChanges().forEach(rd -> {
 					printResourceDescriptor(0, rd);
-				});
-			});
+				}));
 		});
 	}
 
 	private static void printResourceDescriptor(int indent, RecipeDescriptor rd) {
 		String recipeThatWouldMakeChanges = rd.getName();
 		System.out.println(" ".repeat(indent) + recipeThatWouldMakeChanges);
-		rd.getRecipeList().forEach(re -> {
-			printResourceDescriptor(indent + 1, re);
-		});
+		rd.getRecipeList().forEach(re ->
+			printResourceDescriptor(indent + 1, re));
 	}
 
 }

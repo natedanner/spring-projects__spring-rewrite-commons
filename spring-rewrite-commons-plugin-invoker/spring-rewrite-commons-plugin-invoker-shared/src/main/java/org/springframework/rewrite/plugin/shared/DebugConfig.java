@@ -18,7 +18,7 @@ package org.springframework.rewrite.plugin.shared;
 /**
  * @author Fabian Krüger
  */
-public class DebugConfig {
+public final class DebugConfig {
 
 	private int port = 5005;
 

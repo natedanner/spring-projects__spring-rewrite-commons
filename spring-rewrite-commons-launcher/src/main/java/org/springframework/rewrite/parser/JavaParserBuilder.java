@@ -24,7 +24,7 @@ import java.util.Collection;
 
 public class JavaParserBuilder extends JavaParser.Builder {
 
-	private JavaParser.Builder delegate = JavaParser.fromJavaVersion();
+	private final JavaParser.Builder delegate = JavaParser.fromJavaVersion();
 
 	@Override
 	public JavaParser build() {

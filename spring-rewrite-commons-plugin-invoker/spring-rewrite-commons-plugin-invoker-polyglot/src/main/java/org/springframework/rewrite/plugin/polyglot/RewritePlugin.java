@@ -50,7 +50,7 @@ public class RewritePlugin implements OpenRewritePluginBuilder.GradlePluginVersi
 
 	private List<String> dependencies = new ArrayList<>();
 
-	private boolean preferGradle = false;
+	private boolean preferGradle;
 
 	private String minMemory;
 

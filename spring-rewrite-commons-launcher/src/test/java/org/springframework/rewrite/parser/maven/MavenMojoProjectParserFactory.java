@@ -57,14 +57,12 @@ public class MavenMojoProjectParserFactory {
 			RuntimeInformation runtimeInformation = plexusContainer.lookup(RuntimeInformation.class);
 			SettingsDecrypter decrypter = plexusContainer.lookup(SettingsDecrypter.class);
 
-			MavenMojoProjectParser sut = new MavenMojoProjectParser(logger, baseDir,
+			return new MavenMojoProjectParser(logger, baseDir,
 					springRewriteProperties.isPomCacheEnabled(), springRewriteProperties.getPomCacheDirectory(),
 					runtimeInformation, springRewriteProperties.isSkipMavenParsing(),
 					springRewriteProperties.getIgnoredPathPatterns(), springRewriteProperties.getPlainTextMasks(),
 					springRewriteProperties.getSizeThresholdMb(), session, decrypter,
 					springRewriteProperties.isRunPerSubmodule(), springRewriteProperties.isParseAdditionalResources());
-
-			return sut;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);

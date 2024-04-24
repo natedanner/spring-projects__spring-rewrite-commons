@@ -237,7 +237,7 @@ public class MavenProject {
 				//
 				.stream()
 				.filter(rd -> rd.getRepository() != null)
-				.map(rd -> downloader.downloadArtifact(rd))
+				.map(downloader::downloadArtifact)
 				.filter(Objects::nonNull)
 				.distinct()
 				.toList();
@@ -324,10 +324,12 @@ public class MavenProject {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 		MavenProject that = (MavenProject) o;
 		return Objects.equals(buildFile, that.buildFile);
 	}
@@ -595,10 +597,12 @@ public class MavenProject {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 			MavenBuildFile that = (MavenBuildFile) o;
 			Path thisPath = ResourceUtil.getPath(this.pomFileResource);
 			Path thatPath = ResourceUtil.getPath(that.pomFileResource);

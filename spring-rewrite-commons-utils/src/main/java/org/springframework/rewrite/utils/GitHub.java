@@ -29,12 +29,11 @@ public class GitHub {
 
 	public static Git clone(String repositoryUrl, Path targetDir, String token) {
 		try {
-			Git git = Git.cloneRepository()
+			return Git.cloneRepository()
 				.setCredentialsProvider(new UsernamePasswordCredentialsProvider(token, ""))
 				.setURI(repositoryUrl)
 				.setDirectory(targetDir.toFile())
 				.call();
-			return git;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);

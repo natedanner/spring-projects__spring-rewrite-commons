@@ -20,7 +20,7 @@ package org.springframework.rewrite.plugin.shared;
  */
 public class BuildConfig {
 
-	private boolean skipTests = false;
+	private boolean skipTests;
 
 	private MemorySettings memorySettings;
 
@@ -34,8 +34,7 @@ public class BuildConfig {
 	}
 
 	public static BuildConfig skipTests() {
-		BuildConfig buildConfig = new BuildConfig(true);
-		return buildConfig;
+		return new BuildConfig(true);
 	}
 
 	public static BuildConfig defaultConfig() {

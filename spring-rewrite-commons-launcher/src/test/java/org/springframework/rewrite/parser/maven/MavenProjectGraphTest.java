@@ -38,15 +38,15 @@ import static org.springframework.rewrite.parser.maven.MavenProjectGraphTest.Mav
  */
 class MavenProjectGraphTest {
 
-	private MavenProjectGraph sut = new MavenProjectGraph();
+	private final MavenProjectGraph sut = new MavenProjectGraph();
 
-	private static MavenArtifactDownloader artifactDownloader = new RewriteMavenArtifactDownloader(
-			new LocalMavenArtifactCache(Path.of(System.getProperty("user.home")).resolve(".m2/repository")), null,
-			e -> {
-				throw new RuntimeException(e);
-			});
+	private static final MavenArtifactDownloader artifactDownloader = new RewriteMavenArtifactDownloader(
+		new LocalMavenArtifactCache(Path.of(System.getProperty("user.home")).resolve(".m2/repository")), null,
+		e -> {
+			throw new RuntimeException(e);
+		});
 
-	private static MavenProjectFactory projectFactory = new MavenProjectFactory(artifactDownloader);
+	private static final MavenProjectFactory projectFactory = new MavenProjectFactory(artifactDownloader);
 
 	@Test
 	@DisplayName("single module")

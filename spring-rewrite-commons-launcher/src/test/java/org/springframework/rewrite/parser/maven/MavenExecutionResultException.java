@@ -40,7 +40,7 @@ public class MavenExecutionResultException extends RuntimeException {
 
 	private static String buildMessage(String message, List<Throwable> exceptions) {
 		return message + "\n"
-				+ exceptions.stream().map(t -> ExceptionUtils.getStackTrace(t)).collect(Collectors.joining("\n"));
+				+ exceptions.stream().map(ExceptionUtils::getStackTrace).collect(Collectors.joining("\n"));
 	}
 
 }

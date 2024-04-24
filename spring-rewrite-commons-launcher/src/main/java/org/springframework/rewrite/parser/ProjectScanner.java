@@ -93,7 +93,7 @@ public class ProjectScanner {
 		List<PathMatcher> pathMatchers = springRewriteProperties.getIgnoredPathPatterns()
 			.stream()
 			.map(p -> p.startsWith("glob:") ? p : "glob:" + p)
-			.peek(p -> effectivePathMatcherPatterns.add(p))
+			.peek(effectivePathMatcherPatterns::add)
 			.map(baseDir.getFileSystem()::getPathMatcher)
 			.toList();
 
@@ -117,8 +117,7 @@ public class ProjectScanner {
 		}
 		Optional<PathMatcher> isIgnored = pathMatchers.stream().filter(matcher -> {
 			Path resourcePath = ResourceUtil.getPath(r);
-			boolean matches = matcher.matches(resourcePath);
-			return matches;
+			return matcher.matches(resourcePath);
 		}).findFirst();
 		if (isIgnored.isPresent() && LOGGER.isInfoEnabled()) {
 			Set<String> ignoredPathPatterns = springRewriteProperties.getIgnoredPathPatterns();

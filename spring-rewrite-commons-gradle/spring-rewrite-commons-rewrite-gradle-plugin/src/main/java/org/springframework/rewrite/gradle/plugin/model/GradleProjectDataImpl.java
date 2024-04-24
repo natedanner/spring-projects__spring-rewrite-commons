@@ -154,7 +154,7 @@ final class GradleProjectDataImpl implements GradleProjectData, Serializable {
 		return props.entrySet()
 			.stream()
 			.filter(e -> Arrays.stream(SUPPORTED_GRADLE_PROPERTY_VALUE_TYPES).anyMatch(c -> c.isInstance(e.getValue())))
-			.collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
+			.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 
 	private static List<JavaSourceSetData> javaSourceSets(Project project) {
@@ -388,10 +388,12 @@ final class GradleProjectDataImpl implements GradleProjectData, Serializable {
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 		GradleProjectDataImpl that = (GradleProjectDataImpl) o;
 		return rootProject == that.rootProject && multiPlatformKotlinProject == that.multiPlatformKotlinProject
 				&& Objects.equals(name, that.name) && Objects.equals(path, that.path)
